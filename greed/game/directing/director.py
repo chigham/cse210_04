@@ -73,12 +73,9 @@ class Director:
             if robot.get_position().equals(artifact.get_position()):
                 self._score += artifact.get_value()
 
-                # Delete the artifact
-                #cast.remove_actor("artifacts", artifact)
-
                 # Move the artifact to a new position
                 x = random.randint(1, COLS - 1)
-                y = random.randint(1, ROWS / 2) # Mod ---------------------
+                y = random.randint(1, ROWS / 2)
                 position = Point(x, y)
                 position = position.scale(CELL_SIZE)
                 artifact.set_position(position)

@@ -24,7 +24,7 @@ ROWS = 40
 CAPTION = "Greed"
 WHITE = Color(255, 255, 255)
 RED = Color(255, 0, 0)
-DEFAULT_ARTIFACTS = 50 # Test, Original-> 40
+DEFAULT_ARTIFACTS = 50
 ARTIFACTS_SHAPES = ["|*|","O"]
 VELOCITY = Point(0, 1)
 
@@ -44,7 +44,7 @@ def main():
     
     # create the robot
     x = int(MAX_X / 2)
-    y = int(MAX_Y - CELL_SIZE) # Mod --------------
+    y = int(MAX_Y - CELL_SIZE)
     position = Point(x, y)
 
     robot = Actor()
@@ -55,12 +55,11 @@ def main():
     cast.add_actor("robots", robot)
 
     # create the artifacts
-    for _ in range(DEFAULT_ARTIFACTS): # Mod ---
-        text = random.choice(ARTIFACTS_SHAPES) # Mod ----------
-        #message = messages[n] # No message
+    for _ in range(DEFAULT_ARTIFACTS):
+        text = random.choice(ARTIFACTS_SHAPES)
 
         x = random.randint(1, COLS - 1)
-        y = random.randint(1, ROWS - 5) # Mod ---------------------
+        y = random.randint(1, ROWS - 5)
         position = Point(x, y)
         position = position.scale(CELL_SIZE)
 
@@ -79,18 +78,8 @@ def main():
         # If the artifact is a "rock" the score will be -1 if the robot touches it # Mod ---
         if artifact.get_text() == "O":
             artifact.set_value(-1)
-            #artifact.set_message(message)
 
         cast.add_actor("artifacts", artifact)
-        
-    
-    """
-    ##### Hello, I commented this because we already have a score in Director class
-    # create initial score    
-    score = Score()
-    score.set_position(Point(MAX_X // 2, 15))
-    score.set_color(RED)
-    cast.add_actor("score", score)"""
         
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
